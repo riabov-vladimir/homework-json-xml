@@ -1,16 +1,21 @@
 import xml.etree.ElementTree as ET
 
-parser = ET.XMLParser(encoding="utf-8")
-tree = ET.parse("newsafr.xml", parser)
-root = tree.getroot()
-print(root)
-print(root.tag)
-print(root.text)
-print(root.attrib)
 
-xml_items = root.findall("channel/item/description")
-print(len(xml_items))
-print(type(xml_items))
-for item in xml_items:
-	print(item.find("title").text)
-	print()
+def xml_news_text_reader(file='newsafr.xml'):
+	parser = ET.XMLParser(encoding='utf-8')
+	tree = ET.parse(file, parser)
+	root = tree.getroot()
+
+	xml_items = root.findall('channel/item')
+
+	news_texts = []
+
+	for item in xml_items:
+		news_texts.append((item.find('description').text.lower().split()))
+
+	news_text = []
+
+	for text in news_texts:
+		news_text.extend(text)
+
+	return news_text

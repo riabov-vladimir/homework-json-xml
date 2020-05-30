@@ -1,8 +1,8 @@
 import json
 
 
-def json_news_text_reader(file='newsafr.json', encoding='UTF-8'):
-	with open(file, 'r') as reader:
+def json_news_text_reader(file='newsafr.json'):
+	with open(file, 'r', encoding='UTF-8') as reader:
 		news_feed = json.load(reader)
 
 	news_text = []
