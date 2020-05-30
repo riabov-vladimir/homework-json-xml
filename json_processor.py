@@ -1,5 +1,6 @@
 import json
 from pprint import pprint
+from collections import Counter
 
 
 with open('newsafr.json', 'r', encoding='UTF-8') as reader:
@@ -25,4 +26,6 @@ for word in news_text_sorted:
 	else:
 		words_query.setdefault(word, 1)
 
-pprint(words_query)
+top_10 = Counter(words_query).most_common(10)
+
+print(top_10)
